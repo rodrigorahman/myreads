@@ -48,10 +48,11 @@ class BooksApp extends React.Component {
                 <Route
                     exact
                     path='/search'
-                    render={() => (
+                    render={({history}) => (
                         <Search
                             books={this.state.books}
                             callbackUpdateState={this.callbackUpdateState}
+                            history={history}
                         />
                     )}
                 />
@@ -71,6 +72,7 @@ class BooksApp extends React.Component {
                                 books={this.state.books}
                                 callbackUpdateState={this.callbackUpdateState}
                                 filterByCategory={true}
+                                history={history}
                             />
 
                             <FloatButton onClickFn={() => history.push('/search')}/>

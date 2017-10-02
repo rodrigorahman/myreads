@@ -7,11 +7,13 @@ import Book from "./Book";
 import Progress from "react-progress-2";
 import BookModel from "../../domain/BookModel";
 
+
 class Search extends Component {
 
     static propTypes = {
         books: PropTypes.array.isRequired,
-        callbackUpdateState: PropTypes.func.isRequired
+        callbackUpdateState: PropTypes.func.isRequired,
+        history: PropTypes.object.isRequired
     };
 
     state = {
@@ -19,8 +21,10 @@ class Search extends Component {
         message: ''
     };
 
+
     addBook = (book) => {
         this.props.books.push(book);
+        this.props.history.push('/');
     };
 
     findBooks = (e) => {
@@ -58,8 +62,6 @@ class Search extends Component {
                         this.setState({message: 'Search did not return result'})
                     }
 
-                    console.log(booksFound);
-
                     this.setState({booksFound});
 
                     Progress.hide();
@@ -96,6 +98,7 @@ class Search extends Component {
                                         book={b}
                                         onAddBooking={this.addBook}
                                         multiSelection={false}
+                                        history={this.props.history}
                                     />
                                 </li>
                             ))

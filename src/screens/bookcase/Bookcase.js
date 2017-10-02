@@ -9,6 +9,7 @@ class Bookcase extends BaseComponent {
     static propTypes = {
         callbackUpdateState: PropTypes.func.isRequired,
         books: PropTypes.array.isRequired,
+        history: PropTypes.object.isRequired
     };
 
     state = {};
@@ -44,6 +45,7 @@ class Bookcase extends BaseComponent {
                                                         callbackUpdateState={this.props.callbackUpdateState}
                                                         book={b}
                                                         multiSelection={true}
+                                                        history={this.props.history}
                                                     />
                                                 </li>
                                             )

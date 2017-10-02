@@ -7,7 +7,8 @@ class Book extends Component {
         book: PropTypes.object.isRequired,
         callbackUpdateState: PropTypes.func.isRequired,
         onAddBooking: PropTypes.func,
-        multiSelection: PropTypes.bool.isRequired
+        multiSelection: PropTypes.bool.isRequired,
+        history: PropTypes.object.isRequired
     };
 
     addBooking;
@@ -46,8 +47,8 @@ class Book extends Component {
         if(this.addBooking){
             this.addBooking(this.props.book);
         }
-
         this.props.callbackUpdateState();
+        this.props.history.push('/')
     };
 
     componentWillMount() {
