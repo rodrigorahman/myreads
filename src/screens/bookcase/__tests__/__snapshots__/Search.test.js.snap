@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing  1`] = `
+<div
+  className="search-books"
+>
+  <div
+    className="search-books-bar"
+  >
+    <Link
+      className="close-search"
+      replace={false}
+      to="/"
+    >
+      Close
+    </Link>
+    <div
+      className="search-books-input-wrapper"
+    >
+      <input
+        id="txt_term_search"
+        onChange={[Function]}
+        placeholder="Search by title or author"
+        type="text"
+      />
+    </div>
+    <Component
+      cls=""
+      style={Object {}}
+      thumbStyle={Object {}}
+    />
+  </div>
+  <div
+    className="search-books-results"
+  >
+    <h1 />
+    <ol
+      className="books-grid"
+    />
+  </div>
+</div>
+`;

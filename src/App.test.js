@@ -1,8 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
 
+import {shallow} from 'enzyme';
+import 'core-js/es6/map';
+import 'core-js/es6/set';
+
+
+localStorage.books = JSON.stringify([{}]);
+
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+    expect(shallow(
+        <App/>
+    )).toMatchSnapshot();
 });
+

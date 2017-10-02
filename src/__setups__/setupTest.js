@@ -1,7 +1,8 @@
-import { configure } from 'enzyme';
+import {configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-configure({ adapter: new Adapter()});
+
+configure({adapter: new Adapter()});
 
 const localStorageMock = {
     getItem: jest.fn(),
@@ -10,6 +11,7 @@ const localStorageMock = {
 };
 global.localStorage = localStorageMock
 
-global.requestAnimationFrame = global.window.requestAnimationFrame || function(fn) {
-    return setTimeout(fn, 0)
-}
+
+global.requestAnimationFrame = function(callback) {
+    setTimeout(callback, 0);
+};
