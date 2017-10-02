@@ -1,3 +1,3 @@
-const If = ({ test, children }) => (test ? children : false);
+const If = ({ test, children }) => (test ? children : false)
 
-export default If;
+export default If

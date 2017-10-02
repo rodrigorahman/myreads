@@ -1,87 +1,85 @@
 import React from 'react'
 import './App.css'
-import "react-progress-2/main.css"
+import 'react-progress-2/main.css'
 
-import Search from "./screens/bookcase/Search";
-import Header from "./screens/header/Header";
-import Bookcase from "./screens/bookcase/Bookcase";
-import FloatButton from "./shared/FloatButton";
-import { Route } from "react-router-dom";
-
+import Search from './screens/bookcase/Search'
+import Header from './screens/header/Header'
+import Bookcase from './screens/bookcase/Bookcase'
+import FloatButton from './shared/FloatButton'
+import { Route } from 'react-router-dom'
 
 class BooksApp extends React.Component {
 
-    state = {
-        books: [],
-    };
+  state = {
+    books: [],
+  }
 
-    callbackUpdateState = () => {
-        const books = this.state.books.filter((b) => b.status !== 'none');
-        this.setState({books});
-        this.saveBooksInLocalstorage();
-    };
+  callbackUpdateState = () => {
+    const books = this.state.books.filter((b) => b.status !== 'none')
+    this.setState({ books })
+    this.saveBooksInLocalstorage()
+  }
 
-    saveBooksInLocalstorage = () => {
-        localStorage.books = JSON.stringify(this.state.books);
-    };
+  saveBooksInLocalstorage = () => {
+    localStorage.books = JSON.stringify(this.state.books)
+  }
 
+  readBooksLocalStorage = () => {
+    let booksLocal = localStorage.books
+    let books = []
 
-    readBooksLocalStorage = () => {
-        let booksLocal = localStorage.books;
-        let books = [];
-
-        if (booksLocal) {
-            books = JSON.parse(booksLocal);
-        }
-
-        return books;
-    };
-
-    componentWillMount() {
-        this.setState({books: this.readBooksLocalStorage()});
+    if (booksLocal) {
+      books = JSON.parse(booksLocal)
     }
 
-    render() {
-        return (
-            <div className="app">
-                <Route
-                    exact
-                    path='/search'
-                    render={({history}) => (
-                        <Search
-                            books={this.state.books}
-                            callbackUpdateState={this.callbackUpdateState}
-                            history={history}
-                        />
-                    )}
-                />
+    return books
+  }
 
-                <Route
-                    exact
-                    path='/'
-                    render={({history}) => (
+  componentWillMount () {
+    this.setState({ books: this.readBooksLocalStorage() })
+  }
 
-                        <div className="list-books">
+  render () {
+    return (
+      <div className="app">
+        <Route
+          exact
+          path='/search'
+          render={ ({ history }) => (
+            <Search
+              books={ this.state.books }
+              callbackUpdateState={ this.callbackUpdateState }
+              history={ history }
+            />
+          ) }
+        />
 
-                            <Header
-                                books={this.state.books}
-                                callbackUpdateState={this.callbackUpdateState}/>
+        <Route
+          exact
+          path='/'
+          render={ ({ history }) => (
 
-                            <Bookcase
-                                books={this.state.books}
-                                callbackUpdateState={this.callbackUpdateState}
-                                filterByCategory={true}
-                                history={history}
-                            />
+            <div className="list-books">
 
-                            <FloatButton onClick={() => history.push('/search')}/>
-                        </div>
-                    )}
-                />
+              <Header
+                books={ this.state.books }
+                callbackUpdateState={ this.callbackUpdateState }/>
 
+              <Bookcase
+                books={ this.state.books }
+                callbackUpdateState={ this.callbackUpdateState }
+                filterByCategory={ true }
+                history={ history }
+              />
+
+              <FloatButton onClick={ () => history.push('/search') }/>
             </div>
-        )
-    }
+          ) }
+        />
+
+      </div>
+    )
+  }
 }
 
 export default BooksApp
