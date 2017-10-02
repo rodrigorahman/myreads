@@ -1,5 +1,4 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
 import './App.css'
 import "react-progress-2/main.css"
 
@@ -7,7 +6,7 @@ import Search from "./screens/bookcase/Search";
 import Header from "./screens/header/Header";
 import Bookcase from "./screens/bookcase/Bookcase";
 import FloatButton from "./shared/FloatButton";
-import {Route} from "react-router-dom";
+import { Route } from "react-router-dom";
 
 
 class BooksApp extends React.Component {
@@ -75,7 +74,7 @@ class BooksApp extends React.Component {
                                 history={history}
                             />
 
-                            <FloatButton onClickFn={() => history.push('/search')}/>
+                            <FloatButton onClick={() => history.push('/search')}/>
                         </div>
                     )}
                 />

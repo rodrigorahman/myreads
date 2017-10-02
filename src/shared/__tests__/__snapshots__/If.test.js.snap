@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`rendered correctly 1`] = `
-<span>
-  Olá teste
-</span>
-`;
-
-exports[`rendered correctly without children 1`] = `undefined`;

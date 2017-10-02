@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-class Header extends Component {
-
+class Header extends PureComponent {
     static propTypes = {
         books: PropTypes.array.isRequired,
         callbackUpdateState: PropTypes.func.isRequired
@@ -22,6 +21,10 @@ class Header extends Component {
     };
 
     render() {
+
+        const totalSelected = this.props.books.filter(b => b.selected === true).length;
+        const styleClassHeader = totalSelected > 1 ? 'block' : 'none';
+
         return (
             <div>
                 <div className="list-books-title">
@@ -30,8 +33,10 @@ class Header extends Component {
                         books</h2>
                 </div>
                 <div className="list-books-title-status"
-                     style={this.props.books.filter((b) => b.selected === true).length > 1 ? {display: 'block'} : {display: 'none'}}>
-                    <h1>Change {this.props.books.filter((b) => b.selected === true).length} books for:</h1>
+                     style={{
+                        display: styleClassHeader
+                     }}>
+                    <h1>Change {totalSelected} books for:</h1>
                     <select id='sel_status' defaultValue='none' onChange={this.onChangeStatusForAllBooks}>
                         <option value="nones" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>

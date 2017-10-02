@@ -1,10 +1,9 @@
 import React from 'react';
 
-import {mount, render, shallow} from 'enzyme';
+import { mount, render, shallow } from 'enzyme';
 import Search from "../Search";
-import {BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import BookModel from "../../../domain/BookModel";
-import {Link} from 'react-router-dom';
 
 it('renders without crashing ', () => {
 
@@ -83,14 +82,9 @@ it('test with find books', () => {
     let f2 = component.find('#txt_term_search');
     f2.simulate('change', { target: { value: 'a' } });
 
-
-    // expect(component.find('li')).toHaveLength(1);
-
 });
 
-
 it('test with find books with error', () => {
-
 
     global.fetch = jest.fn(() => new Promise(reject => {throw new Error('Oooops!')}));
 
@@ -109,15 +103,10 @@ it('test with find books with error', () => {
     let f2 = component.find('#txt_term_search');
     f2.simulate('change', { target: { value: 'a' } });
 
-
-    // expect(component.find('li')).toHaveLength(1);
-
 });
 
 
 it('test with find books and return data.error', () => {
-
-
 
     global.fetch = jest.fn(() => new Promise(resolve => resolve(
         {
@@ -144,8 +133,4 @@ it('test with find books and return data.error', () => {
 
     let f2 = component.find('#txt_term_search');
     f2.simulate('change', { target: { value: 'a' } });
-
-
-    // expect(component.find('li')).toHaveLength(1);
-
 });

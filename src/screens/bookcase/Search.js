@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {search} from "../../BooksAPI";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { search } from "../../BooksAPI";
 import PropTypes  from 'prop-types';
 import Book from "./Book";
 
@@ -20,7 +20,6 @@ class Search extends Component {
         booksFound: [],
         message: ''
     };
-
 
     addBook = (book) => {
         this.props.books.push(book);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {mount} from 'enzyme';
+import { mount } from 'enzyme';
 import Header from "../Header";
 
 let books = [
@@ -26,25 +26,19 @@ let books = [
     }
 ];
 
-
 it('renders without crashing', () => {
-
     let callbackFunc = jest.fn();
     const component = mount(<Header books={books} callbackUpdateState={callbackFunc}/>);
     component.find('#sel_status').simulate('change');
 
     expect(callbackFunc).toHaveBeenCalledTimes(1);
-
 });
 
 it('change multiples statues together', () => {
-
     let callbackFunc = jest.fn();
     books.forEach(b => b.selected = true);
     const component = mount(<Header books={books} callbackUpdateState={callbackFunc}/>);
     component.find('#sel_status').simulate('change');
 
     expect(callbackFunc).toHaveBeenCalledTimes(1);
-
-
 });

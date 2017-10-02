@@ -1,10 +1,9 @@
-import BaseComponent from "../../shared/BaseComponent";
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import Book from "./Book";
 import If from "../../shared/If";
 
-class Bookcase extends BaseComponent {
+class Bookcase extends Component {
 
     static propTypes = {
         callbackUpdateState: PropTypes.func.isRequired,

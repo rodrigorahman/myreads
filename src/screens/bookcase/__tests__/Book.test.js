@@ -1,21 +1,17 @@
 import React from 'react';
 
-import {mount, shallow} from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import Book from "../Book";
 import BookModel from "../../../domain/BookModel";
 
+const history = {
+    push: () => {}
+}
+
 it('renders without crashing with multiSelection', () => {
 
-    let book = {
-        id: 1,
-        thumbnail: '',
-        width: 128,
-        height: 193,
-        title: '',
-        authors: ['autor 1'],
-        status: 'none',
-        selected: false
-    };
+    let book = new BookModel(1, '', 128, 193, '', ['autor 1'], 'none', false);
+
     let callbackUpdateState = jest.fn();
     let onAddBooking = jest.fn();
     let multiSelection = true;
@@ -25,12 +21,11 @@ it('renders without crashing with multiSelection', () => {
         callbackUpdateState={callbackUpdateState}
         onAddBooking={onAddBooking}
         multiSelection={multiSelection}
+        history={history}
     />)).toMatchSnapshot();
 });
 
-
 it('change bookstatus with multiSelection and book selected', () => {
-
     let book = {
         id: 1,
         thumbnail: '',
@@ -51,12 +46,12 @@ it('change bookstatus with multiSelection and book selected', () => {
         callbackUpdateState={callbackUpdateState}
         onAddBooking={onAddBooking}
         multiSelection={multiSelection}
+        history={history}
     />).find('#sel_change_book').simulate('change');
 
     expect(callbackUpdateState).toHaveBeenCalledTimes(1);
 
 });
-
 
 it('change bookstatus without multiSelection', () => {
 
@@ -72,14 +67,13 @@ it('change bookstatus without multiSelection', () => {
         callbackUpdateState={callbackUpdateState}
         onAddBooking={onAddBooking}
         multiSelection={multiSelection}
+        history={history}
     />).find('#img_book').simulate('doubleClick');
 
     expect(callbackUpdateState).toHaveBeenCalledTimes(1);
-
 });
 
 it('double click in image book with selected = false and multiselection=true', () => {
-
     let book = new BookModel(1,'', 128, 193, '',['author 1'], 'none', false);
     let callbackUpdateState = jest.fn();
     let onAddBooking = jest.fn();
@@ -91,8 +85,8 @@ it('double click in image book with selected = false and multiselection=true', (
         callbackUpdateState={callbackUpdateState}
         onAddBooking={onAddBooking}
         multiSelection={multiSelection}
+        history={history}
     />).find('#img_book').simulate('doubleClick');
 
     expect(callbackUpdateState).toHaveBeenCalledTimes(1);
-
 });
